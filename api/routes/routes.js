@@ -4,7 +4,7 @@ const router = express.Router()
 // Add routes
 // register
 router.route('/register').post((req, res) => {
-    console.log(req.body);
-    res.send('test')
+    const { username, password } = req.body
+    res.json({ requestData: { username, password } })
 })
 module.exports = router;

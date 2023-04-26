@@ -4,15 +4,15 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const urlBE = 'http://localhost:3001/api';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(username);
 
         const response = await axios.post(urlBE + '/register', {
             username,
             password,
         });
-        console.log(response);
+        console.log(response.data);
     };
     return (
         <form className='register' onSubmit={handleSubmit}>
