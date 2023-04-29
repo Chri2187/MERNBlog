@@ -1,17 +1,18 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const app = express()
 const port = process.env.PORT || 3002
-
+const mongoConn = require('./config/db/mongoConnect')
 const routes = require('./routes/routes')
-
-// middleware
-app.use(express.json());
+const app = express()
+//middleware
+app.use(express.json())
 app.use(cors())
 
-app.get('/', (req, res) => res.json('Hello World!'))
+app.get('/api', (req, res) => {
+    res.send('ok')
+})
 
 app.use('/api', routes)
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => { console.log(`Server running on port ${port}`); })

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -7,12 +8,25 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const response = await axios.post(urlBE + '/register', {
+                username,
+                password,
+            });
+            console.log(response.data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Ok',
+                text: 'Registration successful!'
+            })
+        } catch (err) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'User Already Exists',
+            })
+        }
 
-        const response = await axios.post(urlBE + '/register', {
-            username,
-            password,
-        });
-        console.log(response.data);
     };
     return (
         <form className='register' onSubmit={handleSubmit}>
