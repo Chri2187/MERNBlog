@@ -6,6 +6,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [redirect, setRedirect] = useState(false)
     const urlBE = 'http://localhost:3001/api';
 
     const handleSubmit = async (e) => {
@@ -15,7 +16,19 @@ const Login = () => {
                 username,
                 password,
             });
-            localStorage.setItem("jwt", response.data.jwt)
+            console.log(response.data);
+            if (response.data.user === username) {
+                navigate('/')
+                const token = response.data.jwt
+                localStorage.setItem('jwt', token)
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong - Check credentials',
+                })
+            }
+
             Swal.fire({
                 icon: 'success',
                 title: 'Ok',
@@ -23,7 +36,6 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1000
             })
-            navigate('/')
         } catch (err) {
             Swal.fire({
                 icon: 'error',

@@ -42,6 +42,6 @@ const login = async (req, res) => {
 const profile = (req, res) => {
     const token = req.body
     const decoded = jwt.verify(req.body.jwt, process.env.JWT_KEY);
-    res.json(decoded)
+    res.send(decoded)
 }
 module.exports = { register, login, profile }

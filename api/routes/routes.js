@@ -7,5 +7,5 @@ router.route('/register').post(register)
 // login
 router.route('/login').post(login)
 // profile
-router.route('/profile').get(profile)
+router.route('/profile').post(profile)
 module.exports = router;
