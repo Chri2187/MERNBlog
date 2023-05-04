@@ -37,7 +37,7 @@ const Login = () => {
             })
             setTimeout(() => {
                 window.location.reload(false);
-            }, 1200);
+            }, 1000);
 
         } catch (err) {
             Swal.fire({
