@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 
 const Header = ({ username }) => {
+    const handleLogout = () => {
+        localStorage.clear()
+        window.location.reload(false);
+    }
     return (
         <header>
             <Link to='/' className='logo'>
@@ -10,6 +14,7 @@ const Header = ({ username }) => {
                 {username && (
                     <>
                         <Link to='/create'>Create New Post</Link>
+                        <Link onClick={() => { handleLogout() }}>Logout</Link>
                     </>
                 )}
                 {!username && (

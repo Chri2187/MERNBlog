@@ -9,14 +9,12 @@ import axios from 'axios';
 function App() {
     const [username, setUsername] = useState(null)
     const urlBE = 'http://localhost:3001/api';
-    const tt = localStorage.getItem('jwt')
-    console.log(tt);
+    const jwt = localStorage.getItem('jwt')
     useEffect(() => {
         async function getProfile() {
             await axios.post(urlBE + '/profile', {
-                'jwt': tt
+                'jwt': jwt
             }).then(response => {
-                console.log(response.data);
                 setUsername(response.data.username)
             }).catch(err => {
                 console.log({ msg: err });

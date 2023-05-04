@@ -16,11 +16,10 @@ const Login = () => {
                 username,
                 password,
             });
-            console.log(response.data);
             if (response.data.user === username) {
                 navigate('/')
-                const token = response.data.jwt
-                localStorage.setItem('jwt', token)
+                localStorage.setItem('jwt', response.data.jwt)
+
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -36,6 +35,10 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1000
             })
+            setTimeout(() => {
+                window.location.reload(false);
+            }, 1200);
+
         } catch (err) {
             Swal.fire({
                 icon: 'error',
